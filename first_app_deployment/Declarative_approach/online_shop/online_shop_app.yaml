@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: online-shop-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/pooja-d-anchan/ArgoCD_Project.git
+    targetRevision: main
+    path: first_app_deployment/Declarative_approach/online_shop
+  destination:
+    server: https://kubernetes.default.svc   # Replace with your Cluster Url, To get run: `argocd cluster list`i
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
